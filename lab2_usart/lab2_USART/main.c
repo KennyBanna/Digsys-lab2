@@ -5,15 +5,14 @@
  * Author : Oskar
  */ 
 
-#include <stdio.h>
 #include <avr/io.h>
+
 uint8_t* USCR0A_ptr = 0xc0;
 uint8_t* USCR0B_ptr = 0xc1;
 uint8_t* USCR0C_ptr = 0xc2;
 uint8_t* UBRR0L_ptr = 0xC4;
 uint8_t* UBRR0H_ptr = 0xC4 + 0x01;
 uint8_t* UDR0_ptr = 0xC6;
-
 
 #define USCR0A *USCR0A_ptr // Control and status register A
 #define USCR0B *USCR0B_ptr // Control and status register B
@@ -36,9 +35,10 @@ uint8_t is_data_register_empty() {
 
 void set_data_len_to_8_bits() {
 	//USCZ1[2:0] = 011
-	USCR0C &= ~(1 << 1);	// USCZ1[0] = 0
+	USCR0C |= (1 << 1);		// USCZ1[0] = 1
 	USCR0C |= (1 << 2);		// USCZ1[1] = 1
-	USCR0B |= (1 << 2);		// USCZ1[2] = 1
+	
+	USCR0B &= ~(1 << 2);		// USCZ1[2] = 1
 }
 
 uint8_t is_receive_complete() {
@@ -101,10 +101,19 @@ void echo(){
 	
 	uint8_t data = usart0_receive();
 	
+	if((char) data == 'a'){
+		initialize_and_toggle_leds(); // TODO dumb place for this function
+	}
+	
 	if(data != 0){
 		usart0_transmit(data);
 	}
 	
+}
+
+void initialize_and_toggle_leds(){
+	DDRB = 0xFF; // Set data direction of all LEDs to high (Write)
+	PORTB ^= 0xFF;
 }
 
 int main(void){

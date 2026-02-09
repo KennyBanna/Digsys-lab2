@@ -34,4 +34,13 @@ lab 2 - svar
 		PORTM |= 0b00000000;
 		_delay_ms(20-delay);
 	}
-	
+
+
+DEL 2
+Lab Question 2.1
+What happens if the baudrate setting in YAT is changed?
+- Wrong character gets interpreted
+
+Lab Question 2.2
+Try sending a non-printable character, such as “\x00” or similar. Is it still working?
+NO

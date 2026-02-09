@@ -12,7 +12,7 @@ uint8_t* USCR0B_ptr = 0xc1;
 uint8_t* USCR0C_ptr = 0xc2;
 uint8_t* UBRR0L_ptr = 0xC4;
 uint8_t* UBRR0H_ptr = 0xC4 + 0x01;
-uint8_t* UDR0_ptr = 0xC6; 
+uint8_t* UDR0_ptr = 0xC6;
 
 
 #define USCR0A *USCR0A_ptr // Control and status register A
@@ -79,11 +79,7 @@ void usart0_init(){
 // You need to wait until there is data to be read. (RXC == 1)
 uint8_t usart0_receive(){
 	
-	// wait for receive complete
-	while(!is_receive_complete()){
-		printf("waiting to receive");
-	};
-	printf("receive complete");
+	while(!is_receive_complete());
 	
 	return UDR0;
 	
@@ -98,29 +94,26 @@ void usart0_transmit(uint8_t data){
 		
 	UDR0 = data;
 	
-	// Bit 6 – TXC: USART Transmit Complete
-	complete_transmit();
-	
 }
 
 // Lab question 2.1, 2.2
 void echo(){
 	
-	enable_receiver();
 	uint8_t data = usart0_receive();
 	
 	if(data != 0){
-		enable_transmitter();
 		usart0_transmit(data);
 	}
 	
 }
 
-int main(){
-    usart0_init();
+int main(void){
+	
+	enable_receiver();
+    enable_transmitter();
+	usart0_init();
 
 	while(1){
-		echo();
 		echo();
 	}
 	

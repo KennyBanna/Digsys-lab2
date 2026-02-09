@@ -1,0 +1,36 @@
+lab 2 - svar
+
+
+1.13
+	DDRG = 0b1111111;
+	//eller 0x0ff;
+
+1.14
+
+	PORTG
+
+1.15
+	uint8 value = (PINH & 0b11110000) >> 4;
+
+1.16	
+	uint8 value1 = (PINH & 0b11110000) >> 4;
+	uint8 value2 = (PINH & 0b11110000);
+	
+	uint8 finalValue = value1 & value2;
+	
+	
+1.17	
+	uint8_t release = 0;
+	
+	int delay;
+	while(1){
+		delay = 1; // closed hatch
+		if (release) {
+			delay = 2;
+		}
+		
+		PORTM |= 0b00000100;
+		_delay_ms(delay);
+		PORTM |= 0b00000000;
+		_delay_ms(20-delay);
+	}

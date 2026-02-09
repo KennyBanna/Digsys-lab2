@@ -5,13 +5,14 @@
  * Author : Oskar
  */ 
 
+#include <stdio.h>
 #include <avr/io.h>
-const uint8_t* USCR0A_ptr = 0xc0;
-const uint8_t* USCR0B_ptr = 0xc1;
-const uint8_t* USCR0C_ptr = 0xc2;
-const uint8_t* UBRR0L_ptr = 0xC4;
-const uint8_t* UBRR0H_ptr = 0xC4 + 0x01;
-const uint8_t* UDR0_ptr = 0xC6; 
+uint8_t* USCR0A_ptr = 0xc0;
+uint8_t* USCR0B_ptr = 0xc1;
+uint8_t* USCR0C_ptr = 0xc2;
+uint8_t* UBRR0L_ptr = 0xC4;
+uint8_t* UBRR0H_ptr = 0xC4 + 0x01;
+uint8_t* UDR0_ptr = 0xC6; 
 
 
 #define USCR0A *USCR0A_ptr // Control and status register A
@@ -68,7 +69,6 @@ void set_baud_rate_to_2400(){
 // Home assignment 2.3
 void usart0_init(){
 	
-	enable_receiver(); // do we need this? 
 	set_num_stop_bits(1);
 	set_data_len_to_8_bits();
 	set_baud_rate_to_2400();
@@ -76,29 +76,25 @@ void usart0_init(){
 }
 
 // Home assignment 2.4, how to read data from USART0? 
-// You need to wait until there is data to be read.
+// You need to wait until there is data to be read. (RXC == 1)
 uint8_t usart0_receive(){
 	
-	// The transmit buffer can only be written when the UDRE Flag in the UCSRnA Register is set.
-	enable_receiver();
-	
-	while(!is_data_register_empty()){}
-
 	// wait for receive complete
-	while(!is_receive_complete()){}
+	while(!is_receive_complete()){
+		printf("waiting to receive");
+	};
+	printf("receive complete");
 	
 	return UDR0;
 	
 }	
-	
-}
 
 //Home assignment 2.5
 void usart0_transmit(uint8_t data){
 	
-	enable_transmitter();
+	// enable_transmitter ? 
 	
-	while(!is_data_register_empty()){} // wait until UDRE flag is set
+	while(!is_data_register_empty()); // wait until empty transmit buffer
 		
 	UDR0 = data;
 	
@@ -107,13 +103,26 @@ void usart0_transmit(uint8_t data){
 	
 }
 
+// Lab question 2.1, 2.2
+void echo(){
+	
+	enable_receiver();
+	uint8_t data = usart0_receive();
+	
+	if(data != 0){
+		enable_transmitter();
+		usart0_transmit(data);
+	}
+	
+}
 
-int main(void)
-{
-    /* Replace with your application code*/
+int main(){
+    usart0_init();
 
-	//uint8_t* USART_reset = 0x20;
-	//
-	//*USART_reset = 0;
+	while(1){
+		echo();
+		echo();
+	}
+	
 	
 }

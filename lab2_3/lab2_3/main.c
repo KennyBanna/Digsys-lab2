@@ -54,6 +54,7 @@ void timer3_init(){
 	configure_Pin_PB6_to_output();
 }
 
+// After which period the pulse should 
 void set_pulse(uint16_t pulse_value){
 	OCR3AL = pulse_value;
 	OCR3AH = (pulse_value >> 8);
@@ -65,12 +66,25 @@ void set_period(uint16_t period){
 	ICR3H = (period >> 8); // Sets ICR3[15:8]
 }
 
+
+// pulse width percentage, percentage of the period the the pulse (0) is active.
+// Higher 
+void set_duty_cycle(uint8_t percentage) {
+	uint16_t pulse_value = OCR3AL;
+}
+
+
 int main(void)
 {
 	timer3_init();
-	set_pulse(0x0FFF);
-	set_period(0xFFFF);
+	uint16_t period = 0x0aFF;
+	set_pulse(period / 32);
+	set_period(period);
 	
-	while(1);
+	
+	
+	// PWM period = period - pulse => 0xFFFF - 0x00FF
+	
+	// Duty cycle = PWM / T = (0xFFFF - 0x0FF) / 0xFFFF
 }
 

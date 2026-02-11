@@ -3,27 +3,29 @@ lab2_3.elf:     file format elf32-avr
 
 Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
-  0 .data         00000000  00800100  00800100  000000f8  2**0
+  0 .data         00000000  00800100  00800100  00000174  2**0
                   CONTENTS, ALLOC, LOAD, DATA
-  1 .text         000000a4  00000000  00000000  00000054  2**1
+  1 .text         00000120  00000000  00000000  00000054  2**1
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  2 .comment      00000030  00000000  00000000  000000f8  2**0
+  2 .comment      00000030  00000000  00000000  00000174  2**0
                   CONTENTS, READONLY
-  3 .note.gnu.avr.deviceinfo 00000040  00000000  00000000  00000128  2**2
+  3 .note.gnu.avr.deviceinfo 00000040  00000000  00000000  000001a4  2**2
                   CONTENTS, READONLY
-  4 .debug_aranges 00000020  00000000  00000000  00000168  2**0
+  4 .debug_aranges 00000058  00000000  00000000  000001e4  2**0
                   CONTENTS, READONLY, DEBUGGING
-  5 .debug_info   0000080f  00000000  00000000  00000188  2**0
+  5 .debug_info   00000972  00000000  00000000  0000023c  2**0
                   CONTENTS, READONLY, DEBUGGING
-  6 .debug_abbrev 00000772  00000000  00000000  00000997  2**0
+  6 .debug_abbrev 00000816  00000000  00000000  00000bae  2**0
                   CONTENTS, READONLY, DEBUGGING
-  7 .debug_line   000001a2  00000000  00000000  00001109  2**0
+  7 .debug_line   0000030b  00000000  00000000  000013c4  2**0
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_frame  00000024  00000000  00000000  000012ac  2**2
+  8 .debug_frame  00000094  00000000  00000000  000016d0  2**2
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_str    000003c8  00000000  00000000  000012d0  2**0
+  9 .debug_str    00000489  00000000  00000000  00001764  2**0
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_ranges 00000010  00000000  00000000  00001698  2**0
+ 10 .debug_loc    00000016  00000000  00000000  00001bed  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_ranges 00000048  00000000  00000000  00001c03  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -107,23 +109,109 @@ Disassembly of section .text:
   92:	d0 e4       	ldi	r29, 0x40	; 64
   94:	de bf       	out	0x3e, r29	; 62
   96:	cd bf       	out	0x3d, r28	; 61
-  98:	02 d0       	rcall	.+4      	; 0x9e <main>
-  9a:	02 c0       	rjmp	.+4      	; 0xa0 <_exit>
+  98:	35 d0       	rcall	.+106    	; 0x104 <main>
+  9a:	40 c0       	rjmp	.+128    	; 0x11c <_exit>
 
 0000009c <__bad_interrupt>:
   9c:	b1 cf       	rjmp	.-158    	; 0x0 <__vectors>
 
-0000009e <main>:
+0000009e <set_compare_outputmode_to_PWM>:
+}
 
-#include <avr/io.h>
+void set_period(uint16_t period){
+	// sets input capture register ICR3
+	ICR3L = period;		 // Sets ICR3[7:0]
+	ICR3H = (period >> 8); // Sets ICR3[15:8]
+  9e:	e0 e9       	ldi	r30, 0x90	; 144
+  a0:	f0 e0       	ldi	r31, 0x00	; 0
+  a2:	80 81       	ld	r24, Z
+  a4:	80 68       	ori	r24, 0x80	; 128
+  a6:	80 83       	st	Z, r24
+  a8:	80 81       	ld	r24, Z
+  aa:	8f 7b       	andi	r24, 0xBF	; 191
+  ac:	80 83       	st	Z, r24
+  ae:	80 81       	ld	r24, Z
+  b0:	80 62       	ori	r24, 0x20	; 32
+  b2:	80 83       	st	Z, r24
+  b4:	80 81       	ld	r24, Z
+  b6:	8f 7e       	andi	r24, 0xEF	; 239
+  b8:	80 83       	st	Z, r24
+  ba:	08 95       	ret
 
+000000bc <set_wave_form_mode_to_PWM_top_ICR3>:
+  bc:	e1 e9       	ldi	r30, 0x91	; 145
+  be:	f0 e0       	ldi	r31, 0x00	; 0
+  c0:	80 81       	ld	r24, Z
+  c2:	80 61       	ori	r24, 0x10	; 16
+  c4:	80 83       	st	Z, r24
+  c6:	80 81       	ld	r24, Z
+  c8:	88 60       	ori	r24, 0x08	; 8
+  ca:	80 83       	st	Z, r24
+  cc:	e0 e9       	ldi	r30, 0x90	; 144
+  ce:	f0 e0       	ldi	r31, 0x00	; 0
+  d0:	80 81       	ld	r24, Z
+  d2:	82 60       	ori	r24, 0x02	; 2
+  d4:	80 83       	st	Z, r24
+  d6:	80 81       	ld	r24, Z
+  d8:	8e 7f       	andi	r24, 0xFE	; 254
+  da:	80 83       	st	Z, r24
+  dc:	08 95       	ret
+
+000000de <configure_timer3_prescaler_value_1024>:
+  de:	e1 e9       	ldi	r30, 0x91	; 145
+  e0:	f0 e0       	ldi	r31, 0x00	; 0
+  e2:	80 81       	ld	r24, Z
+  e4:	84 60       	ori	r24, 0x04	; 4
+  e6:	80 83       	st	Z, r24
+  e8:	80 81       	ld	r24, Z
+  ea:	8d 7f       	andi	r24, 0xFD	; 253
+  ec:	80 83       	st	Z, r24
+  ee:	80 81       	ld	r24, Z
+  f0:	81 60       	ori	r24, 0x01	; 1
+  f2:	80 83       	st	Z, r24
+  f4:	08 95       	ret
+
+000000f6 <configure_Pin_PB6_to_output>:
+  f6:	26 9a       	sbi	0x04, 6	; 4
+  f8:	08 95       	ret
+
+000000fa <timer3_init>:
+  fa:	d1 df       	rcall	.-94     	; 0x9e <set_compare_outputmode_to_PWM>
+  fc:	df df       	rcall	.-66     	; 0xbc <set_wave_form_mode_to_PWM_top_ICR3>
+  fe:	ef df       	rcall	.-34     	; 0xde <configure_timer3_prescaler_value_1024>
+ 100:	fa cf       	rjmp	.-12     	; 0xf6 <configure_Pin_PB6_to_output>
+ 102:	08 95       	ret
+
+00000104 <main>:
+}
 
 int main(void)
 {
-  9e:	ff cf       	rjmp	.-2      	; 0x9e <main>
+	timer3_init();
+ 104:	fa df       	rcall	.-12     	; 0xfa <timer3_init>
+	configure_timer3_prescaler_value_1024();
+	configure_Pin_PB6_to_output();
+}
 
-000000a0 <_exit>:
-  a0:	f8 94       	cli
+void set_pulse(uint16_t pulse_value){
+	OCR3AL = pulse_value;
+ 106:	8f ef       	ldi	r24, 0xFF	; 255
+ 108:	80 93 98 00 	sts	0x0098, r24	; 0x800098 <__TEXT_REGION_LENGTH__+0x7e0098>
+	OCR3AH = (pulse_value >> 8);
+ 10c:	9f e0       	ldi	r25, 0x0F	; 15
+ 10e:	90 93 99 00 	sts	0x0099, r25	; 0x800099 <__TEXT_REGION_LENGTH__+0x7e0099>
+}
 
-000000a2 <__stop_program>:
-  a2:	ff cf       	rjmp	.-2      	; 0xa2 <__stop_program>
+void set_period(uint16_t period){
+	// sets input capture register ICR3
+	ICR3L = period;		 // Sets ICR3[7:0]
+ 112:	80 93 96 00 	sts	0x0096, r24	; 0x800096 <__TEXT_REGION_LENGTH__+0x7e0096>
+	ICR3H = (period >> 8); // Sets ICR3[15:8]
+ 116:	80 93 97 00 	sts	0x0097, r24	; 0x800097 <__TEXT_REGION_LENGTH__+0x7e0097>
+ 11a:	ff cf       	rjmp	.-2      	; 0x11a <main+0x16>
+
+0000011c <_exit>:
+ 11c:	f8 94       	cli
+
+0000011e <__stop_program>:
+ 11e:	ff cf       	rjmp	.-2      	; 0x11e <__stop_program>

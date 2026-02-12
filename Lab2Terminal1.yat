@@ -5,7 +5,7 @@
   <ProductVersion>2.7.2</ProductVersion>
   <Warning>Modifying structure and/or content may cause undefined behavior!</Warning>
   <Mark>
-    <TimeStamp>2026-02-11T19:47:48.159858+01:00</TimeStamp>
+    <TimeStamp>2026-02-12T14:46:16.0315058+01:00</TimeStamp>
     <UserName>Oskar</UserName>
   </Mark>
   <AutoSaved>false</AutoSaved>
@@ -18,7 +18,7 @@
         <IOType>SerialPort</IOType>
         <SerialPort>
           <PortId>
-            <Name>COM8</Name>
+            <Name>COM12</Name>
           </PortId>
           <Communication>
             <BaudRate>2400</BaudRate>
@@ -477,10 +477,65 @@
         <IsDefined>true</IsDefined>
         <Description />
         <DefaultRadix>String</DefaultRadix>
-        <CommandLines>aadsfga</CommandLines>
+        <CommandLines>a</CommandLines>
         <IsFilePath>false</IsFilePath>
         <FilePath />
       </Command>
+      <RecentCommands>
+        <Item>
+          <IsDefined>true</IsDefined>
+          <Description />
+          <DefaultRadix>String</DefaultRadix>
+          <CommandLines>a</CommandLines>
+          <IsFilePath>false</IsFilePath>
+          <FilePath />
+        </Item>
+        <TimeStamp>2026-02-12T14:46:13.93861+01:00</TimeStamp>
+      </RecentCommands>
+      <RecentCommands>
+        <Item>
+          <IsDefined>true</IsDefined>
+          <Description />
+          <DefaultRadix>String</DefaultRadix>
+          <CommandLines>aaaaaaaaaaaaaaaaaa</CommandLines>
+          <IsFilePath>false</IsFilePath>
+          <FilePath />
+        </Item>
+        <TimeStamp>2026-02-12T14:46:07.4618085+01:00</TimeStamp>
+      </RecentCommands>
+      <RecentCommands>
+        <Item>
+          <IsDefined>true</IsDefined>
+          <Description />
+          <DefaultRadix>String</DefaultRadix>
+          <CommandLines>aaaaaaaaaaaaaaaaaa'</CommandLines>
+          <IsFilePath>false</IsFilePath>
+          <FilePath />
+        </Item>
+        <TimeStamp>2026-02-11T19:48:29.5425548+01:00</TimeStamp>
+      </RecentCommands>
+      <RecentCommands>
+        <Item>
+          <IsDefined>true</IsDefined>
+          <Description />
+          <DefaultRadix>String</DefaultRadix>
+          <CommandLines>aaaaaaaaaaaaaaaaa</CommandLines>
+          <IsFilePath>false</IsFilePath>
+          <FilePath />
+        </Item>
+        <TimeStamp>2026-02-11T19:48:24.5939072+01:00</TimeStamp>
+      </RecentCommands>
+      <RecentCommands>
+        <Item>
+          <IsDefined>true</IsDefined>
+          <Description />
+          <DefaultRadix>String</DefaultRadix>
+          <CommandLines>aaaaaaaaaaaaaaaa</CommandLines>
+          <IsFilePath>false</IsFilePath>
+          <FilePath />
+        </Item>
+        <TimeStamp>2026-02-11T19:48:19.8189095+01:00</TimeStamp>
+      </RecentCommands>
       <RecentCommands>
         <Item>
           <IsDefined>true</IsDefined>
@@ -502,17 +557,6 @@
           <FilePath />
         </Item>
         <TimeStamp>2026-02-11T19:47:30.8639646+01:00</TimeStamp>
-      </RecentCommands>
-      <RecentCommands>
-        <Item>
-          <IsDefined>true</IsDefined>
-          <Description />
-          <DefaultRadix>String</DefaultRadix>
-          <CommandLines>a</CommandLines>
-          <IsFilePath>false</IsFilePath>
-          <FilePath />
-        </Item>
-        <TimeStamp>2026-02-11T19:47:27.6621122+01:00</TimeStamp>
       </RecentCommands>
       <RecentCommands>
         <Item>
@@ -700,50 +744,6 @@
           <FilePath />
         </Item>
         <TimeStamp>2026-02-11T19:40:42.6287613+01:00</TimeStamp>
-      </RecentCommands>
-      <RecentCommands>
-        <Item>
-          <IsDefined>true</IsDefined>
-          <Description />
-          <DefaultRadix>String</DefaultRadix>
-          <CommandLines>b</CommandLines>
-          <IsFilePath>false</IsFilePath>
-          <FilePath />
-        </Item>
-        <TimeStamp>2026-02-09T18:19:36.5335696+01:00</TimeStamp>
-      </RecentCommands>
-      <RecentCommands>
-        <Item>
-          <IsDefined>true</IsDefined>
-          <Description />
-          <DefaultRadix>String</DefaultRadix>
-          <CommandLines>\x00</CommandLines>
-          <IsFilePath>false</IsFilePath>
-          <FilePath />
-        </Item>
-        <TimeStamp>2026-02-09T18:12:45.7306857+01:00</TimeStamp>
-      </RecentCommands>
-      <RecentCommands>
-        <Item>
-          <IsDefined>true</IsDefined>
-          <Description />
-          <DefaultRadix>String</DefaultRadix>
-          <CommandLines>\0x</CommandLines>
-          <IsFilePath>false</IsFilePath>
-          <FilePath />
-        </Item>
-        <TimeStamp>2026-02-09T18:12:36.0225169+01:00</TimeStamp>
-      </RecentCommands>
-      <RecentCommands>
-        <Item>
-          <IsDefined>true</IsDefined>
-          <Description />
-          <DefaultRadix>String</DefaultRadix>
-          <CommandLines>ab</CommandLines>
-          <IsFilePath>false</IsFilePath>
-          <FilePath />
-        </Item>
-        <TimeStamp>2026-02-09T18:10:52.2566883+01:00</TimeStamp>
       </RecentCommands>
     </SendText>
     <SendFile>
